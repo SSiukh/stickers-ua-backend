@@ -5,7 +5,18 @@ export const createStickerSchema = Joi.object({
   info: Joi.string().min(3).max(300).required(),
   color: Joi.string().required(),
   price: Joi.number().required(),
-  type: Joi.string().valid('holographic', 'texture', 'standard').required(),
+  type: Joi.array()
+    .items(
+      Joi.string().valid(
+        'standard',
+        'holographic',
+        'chrome',
+        'mat',
+        'space',
+        'texture',
+      ),
+    )
+    .required(),
   quantity: Joi.number().required(),
   discount: Joi.number(),
   onAbout: Joi.boolean(),

@@ -28,7 +28,7 @@ const stickersSchema = new Schema(
       type: Number,
     },
     type: {
-      type: String,
+      type: Array,
       required: true,
     },
   },
