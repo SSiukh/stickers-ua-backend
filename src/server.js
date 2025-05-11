@@ -14,7 +14,7 @@ export const setupServer = () => {
   const app = express();
 
   const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: getEnvVar('ALLOWED_DOMAIN'),
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
     credentials: true,
   };
