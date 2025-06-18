@@ -18,3 +18,20 @@ export const getAllLocations = async (CityName, Limit, Page) => {
   const { data } = await axios.post('/', requestBody);
   return data.data;
 };
+
+export const getWarehouses = async (CityName, WarehouseId, Limit, Page) => {
+  const requestBody = {
+    apiKey: getEnvVar('NP_APIKEY'),
+    modelName: 'AddressGeneral',
+    calledMethod: 'getWarehouses',
+    methodProperties: {
+      WarehouseId,
+      CityName,
+      Limit,
+      Page,
+    },
+  };
+
+  const { data } = await axios.post('/', requestBody);
+  return data.data;
+};

@@ -7,7 +7,8 @@ import {
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const getStickersController = async (req, res) => {
-  const stickers = await getAllStickers();
+  const { type, search, color } = req.query;
+  const stickers = await getAllStickers(type, search, color);
 
   res.json({
     status: 200,
