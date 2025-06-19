@@ -8,6 +8,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import stickersRouter from './routers/stickers.js';
 import authRouter from './routers/auth.js';
 import cartRouter from './routers/cart.js';
+import wishRouter from './routers/wish.js';
 
 const PORT = Number(getEnvVar('PORT', '3000'));
 
@@ -28,6 +29,7 @@ export const setupServer = () => {
   app.use('/stickers', stickersRouter);
   app.use('/auth', authRouter);
   app.use('/cart', cartRouter);
+  app.use('/wish', wishRouter);
 
   app.get('/', async (req, res) => {
     res.status(200).json({

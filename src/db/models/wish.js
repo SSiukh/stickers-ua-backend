@@ -1,17 +1,12 @@
 import { model, Schema } from 'mongoose';
 
-const cartItemSchema = new Schema(
+const wishItemSchema = new Schema(
   {
     productId: {
       type: Schema.Types.ObjectId,
       ref: 'stickers',
       required: true,
     },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 1,
-    },
   },
   {
     timestamps: true,
@@ -19,15 +14,15 @@ const cartItemSchema = new Schema(
   },
 );
 
-const cartSchema = new Schema(
+const wishSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'users',
       required: true,
       unique: true,
     },
-    items: [cartItemSchema],
+    items: [wishItemSchema],
   },
   {
     timestamps: true,
@@ -35,4 +30,4 @@ const cartSchema = new Schema(
   },
 );
 
-export const CartCollection = model('Cart', cartSchema);
+export const WishCollection = model('wish', wishSchema);
