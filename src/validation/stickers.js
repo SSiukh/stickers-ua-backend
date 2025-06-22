@@ -21,3 +21,22 @@ export const createStickerSchema = Joi.object({
   discount: Joi.number(),
   onAbout: Joi.boolean(),
 });
+
+export const updateStickerSchema = Joi.object({
+  name: Joi.string().min(3).max(30),
+  info: Joi.string().min(3).max(300),
+  price: Joi.number(),
+  type: Joi.array().items(
+    Joi.string().valid(
+      'standard',
+      'holographic',
+      'chrome',
+      'mat',
+      'space',
+      'texture',
+    ),
+  ),
+  quantity: Joi.number(),
+  discount: Joi.number(),
+  onAbout: Joi.boolean(),
+});

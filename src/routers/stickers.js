@@ -3,10 +3,15 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
   createStickerController,
+  deleteStickerController,
   getStickersByIdController,
   getStickersController,
+  updateStickerController,
 } from '../controllers/stickers.js';
-import { createStickerSchema } from '../validation/stickers.js';
+import {
+  createStickerSchema,
+  updateStickerSchema,
+} from '../validation/stickers.js';
 import { upload } from '../middlewares/multer.js';
 import { checkManager } from '../middlewares/checkManager.js';
 import { ROLES } from '../constants/index.js';
@@ -27,6 +32,22 @@ stickersRouter.post(
   parseJSONFields(['type']),
   validateBody(createStickerSchema),
   ctrlWrapper(createStickerController),
+);
+
+stickersRouter.patch(
+  '/:productId',
+  authenticate,
+  checkManager(ROLES.MANAGER),
+  parseJSONFields(['type']),
+  validateBody(updateStickerSchema),
+  ctrlWrapper(updateStickerController),
+);
+
+stickersRouter.delete(
+  '/:productId',
+  authenticate,
+  checkManager(ROLES.MANAGER),
+  ctrlWrapper(deleteStickerController),
 );
 
 export default stickersRouter;

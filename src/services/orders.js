@@ -26,7 +26,6 @@ export const setCompleteOrder = async (orderId) => {
     { new: true },
   );
 
-  console.log(updatedOrder);
   return updatedOrder;
 };
 

@@ -29,3 +29,19 @@ export const getProductById = async (productId) => {
   });
   return product;
 };
+
+export const updateProduct = async (productId, payload) => {
+  const product = await StickersCollection.findByIdAndUpdate(
+    productId,
+    { $set: payload },
+    { new: true },
+  );
+
+  return product;
+};
+
+export const deleteProduct = async (productId) => {
+  const product = await StickersCollection.findByIdAndDelete(productId);
+
+  return product;
+};

@@ -10,8 +10,6 @@ export const getCartItems = async (userId) => {
     throw createHttpError(404, 'Cart not found for this user');
   }
 
-  console.log(cart);
-
   return cart.items;
 };
 
