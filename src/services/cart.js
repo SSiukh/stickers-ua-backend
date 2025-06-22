@@ -90,3 +90,7 @@ export const deleteCartItem = async (userId, productId) => {
 
   return cart;
 };
+
+export const clearCart = async (userId) => {
+  await CartCollection.findOneAndUpdate({ userId }, { $set: { items: [] } });
+};

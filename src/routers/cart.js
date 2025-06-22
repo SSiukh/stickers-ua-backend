@@ -4,6 +4,7 @@ import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import {
   addToCartController,
+  clearCartController,
   deleteCartItemController,
   getCartDataController,
   patchCartItemController,
@@ -33,5 +34,7 @@ cartRouter.delete(
   authenticate,
   ctrlWrapper(deleteCartItemController),
 );
+
+cartRouter.delete('/remove', authenticate, ctrlWrapper(clearCartController));
 
 export default cartRouter;

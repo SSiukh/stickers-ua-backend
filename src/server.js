@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { getAllLocations, getWarehouses } from './services/np.js';
 import { getEnvVar } from './utils/getEnvVar.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -9,6 +8,8 @@ import stickersRouter from './routers/stickers.js';
 import authRouter from './routers/auth.js';
 import cartRouter from './routers/cart.js';
 import wishRouter from './routers/wish.js';
+import npRouter from './routers/np.js';
+import ordersRouter from './routers/orders.js';
 
 const PORT = Number(getEnvVar('PORT', '3000'));
 
@@ -30,31 +31,13 @@ export const setupServer = () => {
   app.use('/auth', authRouter);
   app.use('/cart', cartRouter);
   app.use('/wish', wishRouter);
+  app.use('/np', npRouter);
+  app.use('/orders', ordersRouter);
 
   app.get('/', async (req, res) => {
     res.status(200).json({
       status: 200,
       message: 'Hello world!',
-    });
-  });
-
-  app.get('/locations', async (req, res) => {
-    const { cityName, limit, page } = req.query;
-    const locations = await getAllLocations(cityName, limit, page);
-
-    res.status(200).json({
-      status: 200,
-      data: locations,
-    });
-  });
-
-  app.get('/warehouses', async (req, res) => {
-    const { cityName, warehouseId, limit, page } = req.query;
-    const warehouses = await getWarehouses(cityName, warehouseId, limit, page);
-
-    res.status(200).json({
-      status: 200,
-      data: warehouses,
     });
   });
 

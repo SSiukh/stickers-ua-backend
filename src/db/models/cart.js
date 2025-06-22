@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-const cartItemSchema = new Schema(
+export const cartItemSchema = new Schema(
   {
     productId: {
       type: Schema.Types.ObjectId,

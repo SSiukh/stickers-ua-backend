@@ -1,5 +1,6 @@
 import {
   addItemToCart,
+  clearCart,
   deleteCartItem,
   getCartItems,
   patchCartItem,
@@ -44,6 +45,14 @@ export const deleteCartItemController = async (req, res) => {
   const userId = req.user._id;
 
   await deleteCartItem(userId, productId);
+
+  res.sendStatus(204);
+};
+
+export const clearCartController = async (req, res) => {
+  const userId = req.user._id;
+
+  await clearCart(userId);
 
   res.sendStatus(204);
 };
