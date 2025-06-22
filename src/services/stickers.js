@@ -1,6 +1,6 @@
 import { StickersCollection } from '../db/models/stickers.js';
 
-export const getAllStickers = async (type, search, color) => {
+export const getAllStickers = async (type, search) => {
   const filter = {};
 
   if (search) {
@@ -9,10 +9,6 @@ export const getAllStickers = async (type, search, color) => {
 
   if (type) {
     filter.type = type;
-  }
-
-  if (color) {
-    filter.color = color;
   }
 
   const stickers = await StickersCollection.find(filter);
